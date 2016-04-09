@@ -2,28 +2,25 @@ package library;
 
 public class Book {
     private String name;
-    private Name author;
+    private Author author;
     private int year;
 
-    public Book(String name, int year, Name author) {
-
+    public Book(String name, int year, Author author) {
         this.name = name;
         this.year = year;
         this.author = author;
     }
 
-    public Name getAuthor() {
+    public String showBook() {
+        return this.toString();
+    }
+
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(Name author) {
+    public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public void showBook (Book book){
-        System.out.println(book.getName());
-        System.out.println(book.getAuthor());
-        System.out.println(book.getYear());
     }
 
     public String getName() {
@@ -34,12 +31,35 @@ public class Book {
         this.name = name;
     }
 
-
     public int getYear() {
         return year;
     }
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString(){
+        return "Book" + '\n' +
+                "name = " + name + '\n' +
+                author.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+
+        if (obj == null || obj.getClass() != Book.class){
+            return false;
+        }
+
+        Book temp = (Book) obj;
+
+        return name.equals(temp.name )&&
+                author.equals(temp.author) &&
+                year == temp.year;
     }
 }

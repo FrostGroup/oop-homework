@@ -1,30 +1,42 @@
 package library;
 
-public class Name {
-    private String name;
-    private String surname;
+public class Name extends Author {
+
     private String phone;
 
     public Name (String name, String surname, String phone){
-        this.name = name;
-        this.surname = surname;
+        super(name, surname);
+        setName(name);
+        setSurname(surname);
         this.phone = phone;
     }
 
-    public Name (String name, String surname){
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public String getSurname(){
-        return surname;
-    }
-
-    public String getPhone(){
+    public String getPhone() {
         return phone;
+    }
+    @Override
+    public String toString() {
+        return "Name"+'\n' +
+                "phone = " + phone + '\n' +
+                "name = " + getName() + '\n' +
+                "surnam = " + getSurname();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if(this == obj){
+            return true;
+        }
+
+        if(obj == null || obj.getClass() != Name.class){
+            return false;
+        }
+
+        Name temp = (Name) obj;
+
+        return this.getName().equals(temp.getName()) &&
+                this.getSurname().equals(temp.getSurname()) &&
+                phone.equals(temp.phone);
     }
 }
