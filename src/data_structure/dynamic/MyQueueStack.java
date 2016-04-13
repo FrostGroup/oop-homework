@@ -50,7 +50,7 @@ public class MyQueueStack implements MyQueue {
 
     @Override
     public String toString() {
-        return "MyQueueStack{\n" +
+        return "MyLinkedQueue{\n" +
                 "top: \n" + NodeUtils.toStringR(top).replaceAll("->","\n") +
                 '}';
     }
