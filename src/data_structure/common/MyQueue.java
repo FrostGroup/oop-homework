@@ -1,7 +1,7 @@
 package data_structure.common;
 
 
-public interface MyQueue {
+public interface MyQueue extends MyIterator{
 
     // add to tail
     void enqueue(Object obj);

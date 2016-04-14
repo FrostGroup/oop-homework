@@ -1,34 +1,45 @@
 package data_structure.static_str;
 
+
 import data_structure.common.MyIterator;
-import data_structure.common.MyStack ;
+import data_structure.common.MyQueue;
 import data_structure.dynamic.Node;
 
-
-public class MyArrayStack implements MyStack, MyIterator {
+public class MyArrayQueue implements MyQueue, MyIterator {
 
     private Object[] mas;
     private int top;
     private int position;
 
-    public MyArrayStack(int size) {
+    public MyArrayQueue(int size) {
         mas = new Object[size];
     }
 
     @Override
-    public void push(Object obj) {
+    public void enqueue(Object obj) {
+
         if(top == mas.length){
             System.out.println("Stack is full");
-            return;
+
+        }else{
+            mas[top] = obj;
+            top ++;
         }
-        mas[top++] = obj;
     }
 
     @Override
-    public Object pop() {
-        Object forRet = mas[--top];
-        mas[top] = null;
-        return forRet;
+    public Object dequeue() {
+        if(top == 0){
+            return null;
+        }
+
+        Node resNode = (Node)mas[0];
+        for (int i = 0; i < top ; i++) {
+            mas[i] = mas[i + 1];
+        }
+
+        top --;
+        return resNode;
     }
 
     @Override
@@ -50,11 +61,11 @@ public class MyArrayStack implements MyStack, MyIterator {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = top - 1; i > 0; i--) {
+        for (int i = top - 1; i >= 0; i--) {
             sb.append(mas[i]).append("\n");
         }
 
-        return "MyArrayStack{\n" +
+        return "MyArrayQueue{\n" +
                 sb +
                 '}';
     }
