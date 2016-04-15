@@ -2,14 +2,20 @@ package data_structure.dynamic;
 
 import data_structure.common.MyIterator;
 import data_structure.common.MyQueue;
+import data_structure.common.Stack;
 import data_structure.utils.NodeUtils;
 
 
-public class MyQueueStack implements MyQueue, MyIterator {
+public class MyQueueStack implements MyQueue, Stack {
 
     private Node head;
     private Node tail;
     private int position;
+
+    @Override
+    public MyIterator createIterator(){
+        return new MyQueueStackIterator(head, tail);
+    }
 
     @Override
     public void enqueue(Object obj) {
@@ -34,48 +40,13 @@ public class MyQueueStack implements MyQueue, MyIterator {
 
         Node temp = tail;
 
-        while (temp.next != null && temp.next != head){
+        while (temp.next != null && !temp.next.equals(head)){
             temp = temp.next;
         }
         head = temp;
         head.next = null;
 
         return temp;
-    }
-
-    @Override
-    public Object next() {
-        if(position == 0){
-            position++;
-            return tail;
-        }
-
-        Node resNode = tail;
-
-        for (int i = 0; i < position; i++) {
-            resNode = resNode.next;
-        }
-        position++;
-        return resNode;
-    }
-
-    @Override
-    public boolean hasNext() {
-
-        if(position == 0 && head.next != null){
-            return true;
-        }
-
-        Node resNode = tail;
-
-        for (int i = 0; i < position; i++) {
-            resNode = resNode.next;
-        }
-        if (resNode != null) {
-            return true;
-        }
-
-        return false;
     }
 
     @Override

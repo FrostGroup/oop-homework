@@ -1,12 +1,10 @@
 package test;
 
 
-import data_structure.common.MyIterator;
-import data_structure.common.MyStack;
 import data_structure.dynamic.MyLinkedStack;
 import data_structure.dynamic.MyQueueStack;
 import data_structure.dynamic.Node;
-import data_structure.dynamic.Stack;
+import data_structure.common.Stack;
 import data_structure.static_str.MyArrayQueue;
 import data_structure.static_str.MyArrayStack;
 
@@ -56,5 +54,9 @@ public class TestStack {
 
         Stack stack = new Stack(arrayStack,queue);
         stack.showStack();
+
+        System.out.println();
+        System.out.println(node.equals(node3));
+
     }
 }
