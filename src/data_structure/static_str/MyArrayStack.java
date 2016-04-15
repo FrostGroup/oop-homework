@@ -2,17 +2,22 @@ package data_structure.static_str;
 
 import data_structure.common.MyIterator;
 import data_structure.common.MyStack ;
+import data_structure.common.Stack;
 import data_structure.dynamic.Node;
 
 
-public class MyArrayStack implements MyStack, MyIterator {
+public class MyArrayStack implements MyStack, Stack{
 
     private Object[] mas;
     private int top;
-    private int position;
 
     public MyArrayStack(int size) {
         mas = new Object[size];
+    }
+
+    @Override
+    public MyIterator createIterator(){
+        return new MyArrayStackIterator(mas);
     }
 
     @Override
@@ -29,21 +34,6 @@ public class MyArrayStack implements MyStack, MyIterator {
         Object forRet = mas[--top];
         mas[top] = null;
         return forRet;
-    }
-
-    @Override
-    public Object next() {
-        Node resNode = (Node)mas[position];
-        position++;
-        return resNode;
-    }
-
-    @Override
-    public boolean hasNext() {
-        if(position >= mas.length || mas[position] == null) {
-            return false;
-        }
-        return true;
     }
 
     @Override

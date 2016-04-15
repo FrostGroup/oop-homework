@@ -3,16 +3,21 @@ package data_structure.static_str;
 
 import data_structure.common.MyIterator;
 import data_structure.common.MyQueue;
+import data_structure.common.Stack;
 import data_structure.dynamic.Node;
 
-public class MyArrayQueue implements MyQueue, MyIterator {
+public class MyArrayQueue implements MyQueue, Stack{
 
     private Object[] mas;
     private int top;
-    private int position;
 
     public MyArrayQueue(int size) {
         mas = new Object[size];
+    }
+
+    @Override
+    public MyIterator createIterator(){
+        return new MyArrayQueueIterator(mas);
     }
 
     @Override
@@ -40,21 +45,6 @@ public class MyArrayQueue implements MyQueue, MyIterator {
 
         top --;
         return resNode;
-    }
-
-    @Override
-    public Object next() {
-        Node resNode = (Node)mas[position];
-        position++;
-        return resNode;
-    }
-
-    @Override
-    public boolean hasNext() {
-        if(position >= mas.length || mas[position] == null) {
-            return false;
-        }
-        return true;
     }
 
     @Override
